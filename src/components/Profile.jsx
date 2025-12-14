@@ -256,8 +256,7 @@ const Profile = () => {
             >
               <h4 className="mb-4">Perfil</h4>
               <form
-                onSubmit={(e) => {
-                  e.preventDefault();
+                onSubmit={() => {
                   handleSubmit();
                 }}
               >

@@ -156,8 +156,7 @@ function ProfileSeller() {
    * ---------------------------
    * Actualiza datos en backend
    */
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
 
     let avatarToSend = preview;
     if (imageFile) avatarToSend = await toBase64(imageFile);

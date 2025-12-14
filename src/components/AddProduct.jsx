@@ -75,8 +75,7 @@ function AddProduct() {
    * Enviar formulario
    * Convierte imagen a Base64 y envía datos al backend.
    */
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (!user) return alert("No hay usuario logueado");
 
     let image = null;
