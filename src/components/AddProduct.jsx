@@ -118,6 +118,8 @@ function AddProduct() {
     navigate("/sellerDashboard");
   };
 
+  console.log(token)
+
   /**
    * Convierte un archivo a Base64
    */
