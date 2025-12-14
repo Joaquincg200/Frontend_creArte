@@ -87,187 +87,212 @@ function Shop() {
 
   // ------------------- RENDERIZADO -------------------
   return (
-    <div style={{ backgroundColor: "#FFFDF6" }}>
-      {/* Cabecera */}
-      <header style={{ position: "sticky", top: "0", zIndex: "1000" }}>
+    <div
+      className="d-flex flex-column min-vh-100"
+      style={{ backgroundColor: "#FFFDF6" }}
+    >
+      {/* CABECERA */}
+      <header className="sticky-top" style={{ zIndex: 1000 }}>
         <Header />
       </header>
 
-      <div className="container py-4" style={{ maxWidth: "1200px" }}>
-        <div className="row">
-          {/* FILTROS */}
-          <div className="col-md-3 mb-4 " style={{ top: "80px" }}>
-            <div
-              className="p-3 rounded shadow"
-              style={{
-                backgroundColor: "#A3B18A",
-                border: "2px solid #C77C57",
-                color: "#FAF7F2",
-              }}
-            >
-              <h4 className="fw-bold mb-3">Filtros</h4>
-
-              {/* Filtrado por Categoría */}
-              <h5 className="fw-semibold mt-3">Categoría</h5>
-              {["ROPA", "BISUTERIA", "DECORACION", "CERAMICA", "MUEBLES", "OTROS"].map((cat) => (
-                <div className="form-check mb-1" key={cat}>
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id={cat}
-                    checked={selectedCategories.includes(cat)}
-                    onChange={() => toggleCategory(cat)}
-                    style={{ accentColor: "#C77C57" }}
-                  />
-                  <label htmlFor={cat} className="form-check-label" style={{ color: "#FAF7F2" }}>
-                    {cat}
-                  </label>
-                </div>
-              ))}
-
-              {/* Filtrado por Precio */}
-              <h5 className="fw-semibold mt-4">Precio</h5>
-              <input
-                type="range"
-                min="0"
-                max="500"
-                value={minPrice}
-                onChange={(e) => setMinPrice(Number(e.target.value))}
-                className="form-range mb-2"
-                style={{ accentColor: "#C77C57" }}
-              />
-              <input
-                type="range"
-                min="0"
-                max="500"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="form-range"
-                style={{ accentColor: "#C77C57" }}
-              />
-              <div className="d-flex justify-content-between mt-2 fw-semibold">
-                <span>Mín: {minPrice} €</span>
-                <span>Máx: {maxPrice} €</span>
-              </div>
-            </div>
-          </div>
-
-          {/* PRODUCTOS */}
-          <div className="col-md-9">
-            {/* Ordenación */}
-            <div className="d-flex justify-content-end mb-3">
-              <select
-                className="form-select w-auto"
-                value={sortOrder}
-                onChange={handleSortChange}
+      {/* CONTENIDO PRINCIPAL */}
+      <main className="flex-fill">
+        <div className="container py-4" style={{ maxWidth: "1200px" }}>
+          <div className="row">
+            {/* FILTROS */}
+            <div className="col-md-3 mb-4">
+              <div
+                className="p-3 rounded shadow"
                 style={{
+                  backgroundColor: "#A3B18A",
                   border: "2px solid #C77C57",
-                  color: "#6B4F3A",
-                  backgroundColor: "#FAF7F2",
+                  color: "#FAF7F2",
                 }}
               >
-                <option value="recent">Más recientes</option>
-                <option value="lowToHigh">Menor precio</option>
-                <option value="highToLow">Mayor precio</option>
-              </select>
-            </div>
+                <h4 className="fw-bold mb-3">Filtros</h4>
 
-            {/* GRID de productos */}
-            <div className="row g-3">
-              {paginatedProducts.map((product) => (
-                <div className="col-lg-4 col-md-6" key={product.id}>
-                  <Link to={`/product/${product.id}`} className="text-decoration-none">
-                    <div
-                      className="card h-100 shadow-sm"
-                      style={{
-                        border: "2px solid #C77C57",
-                        borderRadius: "12px",
-                        backgroundColor: "#FAF7F2",
-                      }}
-                    >
-                      <img
-                        src={product.image || "img/shopping.webp"}
-                        className="card-img-top img-fluid rounded-top"
-                        alt={product.name}
-                        style={{ height: "200px", objectFit: "cover" }}
-                      />
-                      <div className="card-body d-flex flex-column">
-                        <h5 className="card-title" style={{ color: "#6B4F3A" }}>
-                          {product.name}
-                        </h5>
-                        <p className="card-text fw-bold mt-auto" style={{ color: "#C77C57" }}>
-                          {product.price} €
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
+                <h5 className="fw-semibold mt-3">Categoría</h5>
+                {[
+                  "ROPA",
+                  "BISUTERIA",
+                  "DECORACION",
+                  "CERAMICA",
+                  "MUEBLES",
+                  "OTROS",
+                ].map((cat) => (
+                  <div className="form-check mb-1" key={cat}>
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id={cat}
+                      checked={selectedCategories.includes(cat)}
+                      onChange={() => toggleCategory(cat)}
+                      style={{ accentColor: "#C77C57" }}
+                    />
+                    <label className="form-check-label">{cat}</label>
+                  </div>
+                ))}
+
+                <h5 className="fw-semibold mt-4">Precio</h5>
+                <input
+                  type="range"
+                  min="0"
+                  max="500"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(Number(e.target.value))}
+                  className="form-range mb-2"
+                  style={{ accentColor: "#C77C57" }}
+                />
+                <input
+                  type="range"
+                  min="0"
+                  max="500"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(Number(e.target.value))}
+                  className="form-range"
+                  style={{ accentColor: "#C77C57" }}
+                />
+                <div className="d-flex justify-content-between mt-2 fw-semibold">
+                  <span>Mín: {minPrice} €</span>
+                  <span>Máx: {maxPrice} €</span>
                 </div>
-              ))}
+              </div>
             </div>
 
-            {/* Paginación */}
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}>
-              <ul style={{ display: "flex", listStyle: "none", padding: 0, gap: "8px" }}>
-                <li>
-                  <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    style={{
-                      padding: "6px 12px",
-                      border: "1px solid #C77C57",
-                      borderRadius: "6px",
-                      backgroundColor: "#FAF7F2",
-                      color: "#6B4F3A",
-                      cursor: currentPage === 1 ? "not-allowed" : "pointer",
-                    }}
-                  >
-                    Anterior
-                  </button>
-                </li>
-                {Array.from({ length: totalPages }, (_, i) => (
-                  <li key={i}>
+            {/* PRODUCTOS */}
+            <div className="col-md-9">
+              {/* ORDENACIÓN */}
+              <div className="d-flex justify-content-end mb-3">
+                <select
+                  className="form-select w-auto"
+                  value={sortOrder}
+                  onChange={handleSortChange}
+                  style={{
+                    border: "2px solid #C77C57",
+                    backgroundColor: "#FAF7F2",
+                  }}
+                >
+                  <option value="recent">Más recientes</option>
+                  <option value="lowToHigh">Menor precio</option>
+                  <option value="highToLow">Mayor precio</option>
+                </select>
+              </div>
+
+              {/* GRID */}
+              <div className="row g-3">
+                {paginatedProducts.map((product) => (
+                  <div className="col-lg-4 col-md-6" key={product.id}>
+                    <Link
+                      to={`/product/${product.id}`}
+                      className="text-decoration-none"
+                    >
+                      <div
+                        className="card h-100 shadow-sm"
+                        style={{
+                          border: "2px solid #C77C57",
+                          borderRadius: "12px",
+                          backgroundColor: "#FAF7F2",
+                        }}
+                      >
+                        <img
+                          src={product.image || "/img/shopping.webp"}
+                          className="card-img-top img-fluid"
+                          alt={product.name}
+                          style={{ height: "200px", objectFit: "cover" }}
+                        />
+                        <div className="card-body d-flex flex-column">
+                          <h5 className="card-title">{product.name}</h5>
+                          <p className="fw-bold mt-auto">{product.price} €</p>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+
+              {/* PAGINACIÓN — COMO ANTES */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "30px",
+                }}
+              >
+                <ul
+                  style={{
+                    display: "flex",
+                    listStyle: "none",
+                    padding: 0,
+                    gap: "8px",
+                  }}
+                >
+                  <li>
                     <button
-                      onClick={() => handlePageChange(i + 1)}
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
                       style={{
                         padding: "6px 12px",
                         border: "1px solid #C77C57",
                         borderRadius: "6px",
-                        backgroundColor: currentPage === i + 1 ? "#C77C57" : "#FAF7F2",
-                        color: currentPage === i + 1 ? "#FAF7F2" : "#6B4F3A",
-                        cursor: "pointer",
+                        backgroundColor: "#FAF7F2",
+                        color: "#6B4F3A",
+                        cursor: currentPage === 1 ? "not-allowed" : "pointer",
                       }}
                     >
-                      {i + 1}
+                      Anterior
                     </button>
                   </li>
-                ))}
-                <li>
-                  <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    style={{
-                      padding: "6px 12px",
-                      border: "1px solid #C77C57",
-                      borderRadius: "6px",
-                      backgroundColor: "#FAF7F2",
-                      color: "#6B4F3A",
-                      cursor: currentPage === totalPages ? "not-allowed" : "pointer",
-                    }}
-                  >
-                    Siguiente
-                  </button>
-                </li>
-              </ul>
+
+                  {Array.from({ length: totalPages }, (_, i) => (
+                    <li key={i}>
+                      <button
+                        onClick={() => handlePageChange(i + 1)}
+                        style={{
+                          padding: "6px 12px",
+                          border: "1px solid #C77C57",
+                          borderRadius: "6px",
+                          backgroundColor:
+                            currentPage === i + 1 ? "#C77C57" : "#FAF7F2",
+                          color: currentPage === i + 1 ? "#FAF7F2" : "#6B4F3A",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {i + 1}
+                      </button>
+                    </li>
+                  ))}
+
+                  <li>
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      style={{
+                        padding: "6px 12px",
+                        border: "1px solid #C77C57",
+                        borderRadius: "6px",
+                        backgroundColor: "#FAF7F2",
+                        color: "#6B4F3A",
+                        cursor:
+                          currentPage === totalPages
+                            ? "not-allowed"
+                            : "pointer",
+                      }}
+                    >
+                      Siguiente
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Widget de chat */}
-      <VoiceflowWidget />
+        <VoiceflowWidget />
+      </main>
 
-      {/* Pie de página */}
-      <footer>
+      {/* FOOTER */}
+      <footer className="mt-auto">
         <Footer />
       </footer>
     </div>
