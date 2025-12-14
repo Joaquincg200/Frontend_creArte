@@ -31,6 +31,8 @@ function Login() {
     axios
       .post(`${import.meta.env.VITE_API_URL}/api/users/login`, payload)
       .then((response) => {
+        const token = response.data.token; // asegúrate de que el backend lo envíe
+        localStorage.setItem("token", token);
         // Guardamos token JWT en cookies
         cookies.set("token", response.data.jwt, {
           path: "/",
