@@ -21,7 +21,6 @@ function Home() {
       .get(`${import.meta.env.VITE_API_URL}/api/products`)
       .then((response) => {
         setProducts(response.data); // Guardamos todos los productos en estado
-        
 
         // Seleccionamos 4 productos aleatorios para sugerencias
         const shuffled = [...response.data].sort(() => 0.5 - Math.random());
@@ -61,55 +60,55 @@ function Home() {
       <main style={{ backgroundColor: "#FFFDF6" }}>
         {/* Imagen principal/banner */}
         <div className="container p-3 position-relative">
-  <img
-    className="img-fluid w-100 rounded"
-    src="/img/imgi_5_generated-image-edb10665-d6fa-4908-aad6-850410c594d1.jpg"
-    alt="Banner principal de creArte"
-    style={{
-      objectFit: "cover",
-      height: "auto",
-    }}
-  />
-  {/* Texto encima de la imagen */}
-  <div
-    className="position-absolute top-50 start-50 translate-middle text-center px-3"
-    style={{ width: "100%", maxWidth: "600px" }}
-  >
-    <h2
-      className="fw-bold display-5 banner-title"
-      style={{
-        color: "#FAF6F0",
-        textShadow: "0 2px 6px rgba(0,0,0,0.4)",
-      }}
-    >
-      Hecho a mano, diseñado para la vida
-    </h2>
-    <p
-      className="lead banner-text mb-4"
-      style={{
-        color: "#000000",
-        textShadow: "0 2px 6px rgba(0,0,0,0.6)",
-      }}
-    >
-      Descubre productos de alta calidad elaborados por talentosos
-      artesanos de todo el mundo.
-    </p>
-    <Link
-      to={"/shop"}
-      className="btn-hero btn px-4 py-2 fw-semibold rounded-pill banner-btn"
-      style={{
-        backgroundColor: "#D28C64",
-        color: "#FAF6F0",
-        border: "none",
-      }}
-    >
-      Explora nuestra colección
-    </Link>
-  </div>
+          <img
+            className="img-fluid w-100 rounded"
+            src="/img/imgi_5_generated-image-edb10665-d6fa-4908-aad6-850410c594d1.jpg"
+            alt="Banner principal de creArte"
+            style={{
+              objectFit: "cover",
+              height: "auto",
+            }}
+          />
+          {/* Texto encima de la imagen */}
+          <div
+            className="position-absolute top-50 start-50 translate-middle text-center px-3"
+            style={{ width: "100%", maxWidth: "600px" }}
+          >
+            <h2
+              className="fw-bold display-5 banner-title"
+              style={{
+                color: "#FAF6F0",
+                textShadow: "0 2px 6px rgba(0,0,0,0.4)",
+              }}
+            >
+              Hecho a mano, diseñado para la vida
+            </h2>
+            <p
+              className="lead banner-text mb-4"
+              style={{
+                color: "#000000",
+                textShadow: "0 2px 6px rgba(0,0,0,0.6)",
+              }}
+            >
+              Descubre productos de alta calidad elaborados por talentosos
+              artesanos de todo el mundo.
+            </p>
+            <Link
+              to={"/shop"}
+              className="btn-hero btn px-4 py-2 fw-semibold rounded-pill banner-btn"
+              style={{
+                backgroundColor: "#D28C64",
+                color: "#FAF6F0",
+                border: "none",
+              }}
+            >
+              Explora nuestra colección
+            </Link>
+          </div>
 
-  {/* Media queries para móviles */}
-  <style>
-    {`
+          {/* Media queries para móviles */}
+          <style>
+            {`
       @media (max-width: 768px) {
         .banner-title {
           font-size: 1.5rem !important;
@@ -136,9 +135,8 @@ function Home() {
         }
       }
     `}
-  </style>
-</div>
-
+          </style>
+        </div>
 
         {/* Productos sugeridos */}
         <div className="container p-3">
@@ -208,10 +206,7 @@ function Home() {
                         style={{ height: "200px", objectFit: "cover" }}
                       />
                       <div className="card-body d-flex flex-column">
-                        <h5
-                          className="card-title"
-                          style={{ color: "#6B4F3A" }}
-                        >
+                        <h5 className="card-title" style={{ color: "#6B4F3A" }}>
                           {product.name}
                         </h5>
                         <p

@@ -197,13 +197,23 @@ function Shop() {
                       >
                         <img
                           src={product.image || "/img/shopping.webp"}
-                          className="card-img-top img-fluid"
+                          className="card-img-top img-fluid rounded-top"
                           alt={product.name}
                           style={{ height: "200px", objectFit: "cover" }}
                         />
                         <div className="card-body d-flex flex-column">
-                          <h5 className="card-title">{product.name}</h5>
-                          <p className="fw-bold mt-auto">{product.price} €</p>
+                          <h5
+                            className="card-title"
+                            style={{ color: "#6B4F3A" }}
+                          >
+                            {product.name}
+                          </h5>
+                          <p
+                            className="card-text fw-bold mt-auto"
+                            style={{ color: "#C77C57" }}
+                          >
+                            {product.price} €
+                          </p>
                         </div>
                       </div>
                     </Link>
