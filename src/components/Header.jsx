@@ -120,13 +120,13 @@ function Header() {
           <div className="collapse navbar-collapse d-none d-lg-block mx-auto">
             <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" style={{ color: "#FFFFFF" }} to="/shop">Tienda</Link>
+                <Link className="nav-link text-white" to="/shop">Tienda</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" style={{ color: "#FFFFFF" }} to="/aboutUs">Sobre nosotros</Link>
+                <Link className="nav-link text-white" to="/aboutUs">Sobre nosotros</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" style={{ color: "#FFFFFF" }} to="/contact">Contacto</Link>
+                <Link className="nav-link text-white" to="/contact">Contacto</Link>
               </li>
             </ul>
           </div>
@@ -141,11 +141,11 @@ function Header() {
           <span style={{ color: "#FFFFFF" }}>&#9776;</span>
         </button>
 
-        {/* --- CENTRO: Buscador dinámico --- */}
+        {/* --- CENTRO: Buscador dinámico solo en escritorio --- */}
         <div
-          className="flex-grow-1 d-flex justify-content-start me-5 mx-5"
+          className="flex-grow-1 d-none d-lg-flex justify-content-start me-5 mx-5"
           ref={wrapperRef}
-          style={{ minWidth: 0 }} // <-- Evita que el buscador ensanche la navbar en móvil
+          style={{ minWidth: 0 }}
         >
           <div className="w-100 position-relative">
             <input
@@ -156,17 +156,10 @@ function Header() {
               onChange={handleChange}
               onFocus={() => searchTerm && setShowDropdown(true)}
             />
-            {/* Dropdown de sugerencias */}
             {showDropdown && suggestions.length > 0 && (
               <div
                 className="position-absolute bg-white shadow rounded w-100"
-                style={{
-                  zIndex: 1000,
-                  maxHeight: "250px",
-                  overflowY: "auto",
-                  left: 0,
-                  right: 0, // <-- Evita que sobresalga del contenedor
-                }}
+                style={{ zIndex: 1000, maxHeight: "250px", overflowY: "auto", left: 0, right: 0 }}
               >
                 {suggestions.map((product) => (
                   <div
@@ -204,7 +197,6 @@ function Header() {
           >
             {session ? (
               <>
-                {/* Avatar o inicial */}
                 {users?.avatar ? (
                   <img
                     src={users?.avatar}
@@ -224,7 +216,6 @@ function Header() {
                   {users?.name}
                 </span>
 
-                {/* Menú desplegable */}
                 {openMenu && (
                   <div className="menu position-absolute shadow-lg rounded bg-white" style={{ top: "50px", right: "110px", width: "145px", zIndex: 1000 }}>
                     <ul className="list-unstyled mb-0">
