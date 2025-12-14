@@ -1,0 +1,43 @@
+.btn-hero{
+    transition: all 0.3s ease;
+}
+.btn-hero:hover{
+    background-color: #E3B23C; 
+    transform: scale(1.05);
+}
+
+
+.links-Header {
+  transition: background-color 0.3s ease;
+}
+
+.links-Header:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-orange {
+  background-color: #f59e0b;
+  color: white;
+  border: none;
+}
+
+.btn-orange:hover {
+  background-color: #d97706;
+  color: white;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+menu{
+  animation: fadeSlideIn 0.3s ease forwards;
+  transform-origin: top right;
+}
