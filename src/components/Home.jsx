@@ -21,6 +21,8 @@ function Home() {
       .get(`${import.meta.env.VITE_API_URL}/api/products`)
       .then((response) => {
         setProducts(response.data); // Guardamos todos los productos en estado
+        localStorage.setItem("token", response.data.token);
+
 
         // Seleccionamos 4 productos aleatorios para sugerencias
         const shuffled = [...response.data].sort(() => 0.5 - Math.random());

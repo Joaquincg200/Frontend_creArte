@@ -35,9 +35,8 @@ function AddProduct() {
   const cookies = new Cookies();
   const user = cookies.get("user");
 
-  const userName = user?.name;
-  const token = user?.token;
-  const userImg = user?.img;
+  const token = localStorage.getItem("token");
+
 
   /**
    * Cerrar sesión:
