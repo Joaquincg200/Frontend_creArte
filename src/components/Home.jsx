@@ -62,7 +62,7 @@ function Home() {
         <div className="container p-3 position-relative">
           <img
             className="img-fluid w-100 rounded"
-            src="img/imgi_5_generated-image-edb10665-d6fa-4908-aad6-850410c594d1.jpg"
+            src="/img/imgi_5_generated-image-edb10665-d6fa-4908-aad6-850410c594d1.jpg"
             alt="Banner principal de creArte"
             style={{
               objectFit: "cover",
@@ -126,7 +126,7 @@ function Home() {
                     }}
                   >
                     <img
-                      src={product.image || "img/shopping.webp"}
+                      src={product.image || "/img/shopping.webp"}
                       className="card-img-top img-fluid rounded-top"
                       alt={product.name}
                       style={{ height: "200px", objectFit: "cover" }}
@@ -169,7 +169,7 @@ function Home() {
                       }}
                     >
                       <img
-                        src={product.image || "img/shopping.webp"}
+                        src={product.image || "/img/shopping.webp"}
                         className="card-img-top img-fluid rounded-top"
                         alt={product.name}
                         style={{ height: "200px", objectFit: "cover" }}
