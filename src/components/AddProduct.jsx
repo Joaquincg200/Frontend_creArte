@@ -35,9 +35,6 @@ function AddProduct() {
   const cookies = new Cookies();
   const user = cookies.get("user");
 
-  const token = localStorage.getItem("token");
-
-
   /**
    * Cerrar sesión:
    * Elimina cookies y redirige al inicio.
@@ -75,6 +72,7 @@ function AddProduct() {
    * Enviar formulario
    * Convierte imagen a Base64 y envía datos al backend.
    */
+  const token = localStorage.getItem("token");
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user) return alert("No hay usuario logueado");
