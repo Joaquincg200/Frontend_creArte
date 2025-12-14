@@ -114,9 +114,7 @@ function AddProduct() {
     // Redirigir después de agregar
     navigate("/sellerDashboard");
   };
-
-  console.log(token)
-
+  
   /**
    * Convierte un archivo a Base64
    */
