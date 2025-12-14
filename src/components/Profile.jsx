@@ -336,7 +336,9 @@ const Profile = () => {
                       />
                     </div>
                     <div className="mb-3">
-                      <label className="form-label fw-bold">Contraseña antigua</label>
+                      <label className="form-label fw-bold">
+                        Contraseña antigua
+                      </label>
                       <input
                         type="password"
                         className="form-control"
@@ -346,7 +348,9 @@ const Profile = () => {
                       />
                     </div>
                     <div className="mb-3">
-                      <label className="form-label fw-bold">Nueva contraseña</label>
+                      <label className="form-label fw-bold">
+                        Nueva contraseña
+                      </label>
                       <input
                         type="password"
                         className="form-control"
@@ -389,94 +393,124 @@ const Profile = () => {
               style={{ backgroundColor: "#F5EDE0" }}
             >
               <h4>Productos pedidos</h4>
-              <table
-                className="table align-middle table-hover shadow-sm"
-                style={{
-                  backgroundColor: "#FFFDF6",
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                }}
-              >
-                <thead
+              <div className="table-responsive">
+                <table
+                  className="table align-middle table-hover shadow-sm"
                   style={{
-                    backgroundColor: "#E8DCC8",
-                    color: "#6B4F3F",
-                    fontWeight: "600",
+                    backgroundColor: "#FFFDF6",
+                    borderRadius: "12px",
+                    overflow: "hidden",
                   }}
                 >
-                  <tr>
-                    <th className="text-center">Pedido</th>
-                    <th className="text-center">Productos</th>
-                    <th className="text-center">Total</th>
-                    <th className="text-center">Estado</th>
-                    <th className="text-center">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {currentOrders.length > 0 ? (
-                    currentOrders.map((order) => (
-                      <tr key={order.id} style={{ borderBottom: "1px solid #f0e6d9" }}>
-                        <td className="text-center fw-semibold text-uppercase">
-                          Pedido #{order.id}
-                        </td>
-                        <td className="text-center">
-                          {order.items?.map((item) => (
-                            <div key={item.productId} style={{ marginBottom: "0.5em" }}>
-                              {item.productName || item.productId} x {item.quantity}
-                            </div>
-                          ))}
-                        </td>
-                        <td className="text-center">{order.total?.toFixed(2) || "0.00"} €</td>
-                        <td className="text-center">
-                          <span
-                            className={`badge ${
-                              order.status === "PENDIENTE"
-                                ? "bg-warning text-dark"
-                                : order.status === "ENVIADO"
-                                ? "bg-info text-dark"
-                                : order.status === "ENTREGADO"
-                                ? "bg-success"
-                                : "bg-devuelto"
-                            }`}
-                            style={{ fontWeight: 600, padding: "0.5em 0.75em" }}
-                          >
-                            {order.status}
-                          </span>
-                        </td>
-                        <td className="text-center">
-                          <button
-                            className="btn btn-sm btn-danger"
-                            disabled={order.status !== "PENDIENTE"}
-                            onClick={() => handleReturn(order.id)}
-                          >
-                            Cancelar
-                          </button>
-                          {order.items?.map((item) => (
-                            <button
-                              key={item.productId}
-                              className="btn btn-sm"
-                              style={{ marginLeft: "0.5em", color: "#C77C57" }}
-                              onClick={() => openChat(item.sellerId)}
+                  <thead
+                    style={{
+                      backgroundColor: "#E8DCC8",
+                      color: "#6B4F3F",
+                      fontWeight: "600",
+                    }}
+                  >
+                    <tr>
+                      <th className="text-center">Pedido</th>
+                      <th className="text-center">Productos</th>
+                      <th className="text-center">Total</th>
+                      <th className="text-center">Estado</th>
+                      <th className="text-center">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentOrders.length > 0 ? (
+                      currentOrders.map((order) => (
+                        <tr
+                          key={order.id}
+                          style={{ borderBottom: "1px solid #f0e6d9" }}
+                        >
+                          <td className="text-center fw-semibold text-uppercase">
+                            Pedido #{order.id}
+                          </td>
+                          <td className="text-center">
+                            {order.items?.map((item) => (
+                              <div
+                                key={item.productId}
+                                style={{ marginBottom: "0.5em" }}
+                              >
+                                {item.productName || item.productId} x{" "}
+                                {item.quantity}
+                              </div>
+                            ))}
+                          </td>
+                          <td className="text-center">
+                            {order.total?.toFixed(2) || "0.00"} €
+                          </td>
+                          <td className="text-center">
+                            <span
+                              className={`badge ${
+                                order.status === "PENDIENTE"
+                                  ? "bg-warning text-dark"
+                                  : order.status === "ENVIADO"
+                                  ? "bg-info text-dark"
+                                  : order.status === "ENTREGADO"
+                                  ? "bg-success"
+                                  : "bg-devuelto"
+                              }`}
+                              style={{
+                                fontWeight: 600,
+                                padding: "0.5em 0.75em",
+                              }}
                             >
-                              <i className="bi bi-chat-fill"></i>
+                              {order.status}
+                            </span>
+                          </td>
+                          <td className="text-center">
+                            <button
+                              className="btn btn-sm btn-danger"
+                              disabled={order.status !== "PENDIENTE"}
+                              onClick={() => handleReturn(order.id)}
+                            >
+                              Cancelar
                             </button>
-                          ))}
+                            {order.items?.map((item) => (
+                              <button
+                                key={item.productId}
+                                className="btn btn-sm"
+                                style={{
+                                  marginLeft: "0.5em",
+                                  color: "#C77C57",
+                                }}
+                                onClick={() => openChat(item.sellerId)}
+                              >
+                                <i className="bi bi-chat-fill"></i>
+                              </button>
+                            ))}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={5} className="text-center">
+                          No hay pedidos
                         </td>
                       </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan={5} className="text-center">
-                        No hay pedidos
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+                    )}
+                  </tbody>
+                </table>
+              </div>
 
               {/* Paginación */}
-              <div style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}>
-                <ul style={{ display: "flex", listStyle: "none", padding: 0, gap: "8px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "30px",
+                }}
+              >
+                <ul
+                  style={{
+                    display: "flex",
+                    listStyle: "none",
+                    padding: 0,
+                    gap: "8px",
+                  }}
+                >
                   <li>
                     <button
                       onClick={() => handlePageChange(currentPage - 1)}
@@ -501,7 +535,8 @@ const Profile = () => {
                           padding: "6px 12px",
                           border: "1px solid #C77C57",
                           borderRadius: "6px",
-                          backgroundColor: currentPage === i + 1 ? "#C77C57" : "#FAF7F2",
+                          backgroundColor:
+                            currentPage === i + 1 ? "#C77C57" : "#FAF7F2",
                           color: currentPage === i + 1 ? "#FAF6F0" : "#6B4F3A",
                           cursor: "pointer",
                         }}
@@ -520,7 +555,10 @@ const Profile = () => {
                         borderRadius: "6px",
                         backgroundColor: "#FAF7F2",
                         color: "#6B4F3A",
-                        cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+                        cursor:
+                          currentPage === totalPages
+                            ? "not-allowed"
+                            : "pointer",
                       }}
                     >
                       Siguiente
