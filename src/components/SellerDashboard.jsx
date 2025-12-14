@@ -332,14 +332,14 @@ function SellerDashboard() {
               {/* Cards métricas */}
               <div className="row mb-4">
                 <div className="col-md-3">
-                  <div className="card text-center shadow-sm p-3">
+                  <div className="card text-center shadow-sm p-3 mb-3 mb-md-0">
                     <h5>Total pedidos</h5>
                     <h3>{totalOrders}</h3>
                   </div>
                 </div>
                 <div className="col-md-3">
                   <div
-                    className="card text-center shadow-sm p-3"
+                    className="card text-center shadow-sm p-3 mb-3 mb-md-0"
                     style={{ backgroundColor: "#FFD27F", color: "#4B2E1E" }}
                   >
                     <h5>Pendientes</h5>
@@ -348,7 +348,7 @@ function SellerDashboard() {
                 </div>
                 <div className="col-md-3">
                   <div
-                    className="card text-center shadow-sm p-3"
+                    className="card text-center shadow-sm p-3 mb-3 mb-md-0"
                     style={{ backgroundColor: "#D18B59", color: "#FFF" }}
                   >
                     <h5>Enviados</h5>

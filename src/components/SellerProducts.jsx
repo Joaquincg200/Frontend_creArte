@@ -25,8 +25,6 @@ function SellerProducts() {
   const navigate = useNavigate(); // Hook para navegación programática
   const cookies = new Cookies(); // Instancia de cookies
 
-  
-
   // --- Paginación ---
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const productsPerPage = 8; // Número de productos por página
@@ -383,121 +381,125 @@ function SellerProducts() {
                 </div>
 
                 {/* --- Tabla de productos --- */}
-                <table
-                  className="table align-middle table-hover shadow-sm"
-                  style={{
-                    backgroundColor: "#FFFDF6",
-                    borderRadius: "12px",
-                    overflow: "hidden",
-                  }}
-                >
-                  <thead
+                <div className="table-responsive">
+                  <table
+                    className="table align-middle table-hover shadow-sm"
                     style={{
-                      backgroundColor: "#E8DCC8",
-                      color: "#6B4F3F",
-                      fontWeight: "600",
+                      backgroundColor: "#FFFDF6",
+                      borderRadius: "12px",
+                      overflow: "hidden",
                     }}
                   >
-                    <tr>
-                      <th className="text-center">Producto</th>
-                      <th className="text-center">ID</th>
-                      <th className="text-center">Stock</th>
-                      <th className="text-center">Precio</th>
-                      <th className="text-center">Acciones</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {currentProducts.map((product) => (
-                      <tr
-                        key={product.id}
-                        style={{ borderBottom: "1px solid #f0e6d9" }}
-                      >
-                        <td className="d-flex justify-content-center align-items-center">
-                          <img
-                            src={product.image || "img/shopping.webp"}
-                            alt=""
-                            className="rounded me-3 shadow-sm"
-                            style={{
-                              height: "65px",
-                              width: "65px",
-                              objectFit: "cover",
-                            }}
-                          />
-                          <span style={{ fontWeight: "500", color: "#5A3E2B" }}>
-                            {product.name}
-                          </span>
-                        </td>
-                        <td
-                          className="text-center"
-                          style={{ color: "#7A5A46" }}
-                        >
-                          {product.id}
-                        </td>
-                        <td
-                          className="text-center"
-                          style={{ color: "#7A5A46" }}
-                        >
-                          {editingId === product.id ? (
-                            <input
-                              type="number"
-                              value={editedStock}
-                              onChange={(e) =>
-                                setEditedStock(parseInt(e.target.value))
-                              }
-                              className="form-control form-control-sm"
-                              style={{ width: "70px", margin: "0 auto" }}
-                            />
-                          ) : (
-                            product.stock
-                          )}
-                        </td>
-                        <td
-                          className="text-center"
-                          style={{ color: "#7A5A46" }}
-                        >
-                          {editingId === product.id ? (
-                            <input
-                              type="number"
-                              value={editedPrice}
-                              onChange={(e) =>
-                                setEditedPrice(parseFloat(e.target.value))
-                              }
-                              className="form-control form-control-sm"
-                              style={{ width: "70px", margin: "0 auto" }}
-                            />
-                          ) : (
-                            product.price + " €"
-                          )}
-                        </td>
-                        <td className="text-center">
-                          {editingId === product.id ? (
-                            <>
-                              <button
-                                className="btn btn-sm btn-success me-2"
-                                onClick={() => handleSave(product.id)}
-                              >
-                                Guardar
-                              </button>
-                              <button
-                                className="btn btn-sm btn-secondary"
-                                onClick={handleCancel}
-                              >
-                                Cancelar
-                              </button>
-                            </>
-                          ) : (
-                            <i
-                              className="bi bi-pencil text-success"
-                              style={{ cursor: "pointer" }}
-                              onClick={() => handleEdit(product)}
-                            ></i>
-                          )}
-                        </td>
+                    <thead
+                      style={{
+                        backgroundColor: "#E8DCC8",
+                        color: "#6B4F3F",
+                        fontWeight: "600",
+                      }}
+                    >
+                      <tr>
+                        <th className="text-center">Producto</th>
+                        <th className="text-center">ID</th>
+                        <th className="text-center">Stock</th>
+                        <th className="text-center">Precio</th>
+                        <th className="text-center">Acciones</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+
+                    <tbody>
+                      {currentProducts.map((product) => (
+                        <tr
+                          key={product.id}
+                          style={{ borderBottom: "1px solid #f0e6d9" }}
+                        >
+                          <td className="d-flex justify-content-center align-items-center">
+                            <img
+                              src={product.image || "img/shopping.webp"}
+                              alt=""
+                              className="rounded me-3 shadow-sm"
+                              style={{
+                                height: "65px",
+                                width: "65px",
+                                objectFit: "cover",
+                              }}
+                            />
+                            <span
+                              style={{ fontWeight: "500", color: "#5A3E2B" }}
+                            >
+                              {product.name}
+                            </span>
+                          </td>
+                          <td
+                            className="text-center"
+                            style={{ color: "#7A5A46" }}
+                          >
+                            {product.id}
+                          </td>
+                          <td
+                            className="text-center"
+                            style={{ color: "#7A5A46" }}
+                          >
+                            {editingId === product.id ? (
+                              <input
+                                type="number"
+                                value={editedStock}
+                                onChange={(e) =>
+                                  setEditedStock(parseInt(e.target.value))
+                                }
+                                className="form-control form-control-sm"
+                                style={{ width: "70px", margin: "0 auto" }}
+                              />
+                            ) : (
+                              product.stock
+                            )}
+                          </td>
+                          <td
+                            className="text-center"
+                            style={{ color: "#7A5A46" }}
+                          >
+                            {editingId === product.id ? (
+                              <input
+                                type="number"
+                                value={editedPrice}
+                                onChange={(e) =>
+                                  setEditedPrice(parseFloat(e.target.value))
+                                }
+                                className="form-control form-control-sm"
+                                style={{ width: "70px", margin: "0 auto" }}
+                              />
+                            ) : (
+                              product.price + " €"
+                            )}
+                          </td>
+                          <td className="text-center">
+                            {editingId === product.id ? (
+                              <>
+                                <button
+                                  className="btn btn-sm btn-success me-2"
+                                  onClick={() => handleSave(product.id)}
+                                >
+                                  Guardar
+                                </button>
+                                <button
+                                  className="btn btn-sm btn-secondary"
+                                  onClick={handleCancel}
+                                >
+                                  Cancelar
+                                </button>
+                              </>
+                            ) : (
+                              <i
+                                className="bi bi-pencil text-success"
+                                style={{ cursor: "pointer" }}
+                                onClick={() => handleEdit(product)}
+                              ></i>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
 
                 {/* --- Paginación --- */}
                 <div

@@ -42,7 +42,7 @@ export default function PaymentPage() {
           </div>
 
           {/* RESUMEN DEL CARRITO */}
-          <div className="col-md-6 mb-3 mb-md-0">
+          <div className="col-md-6 mb-3 mb-md-0 mt-3 mt-md-0">
             <div
               className="p-4 border rounded shadow-sm"
               style={{ backgroundColor: "#F5EDE0" }}
