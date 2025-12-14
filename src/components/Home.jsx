@@ -21,8 +21,7 @@ function Home() {
       .get(`${import.meta.env.VITE_API_URL}/api/products`)
       .then((response) => {
         setProducts(response.data); // Guardamos todos los productos en estado
-        localStorage.setItem("token", response.data.token);
-
+        
 
         // Seleccionamos 4 productos aleatorios para sugerencias
         const shuffled = [...response.data].sort(() => 0.5 - Math.random());
@@ -62,52 +61,84 @@ function Home() {
       <main style={{ backgroundColor: "#FFFDF6" }}>
         {/* Imagen principal/banner */}
         <div className="container p-3 position-relative">
-          <img
-            className="img-fluid w-100 rounded"
-            src="/img/imgi_5_generated-image-edb10665-d6fa-4908-aad6-850410c594d1.jpg"
-            alt="Banner principal de creArte"
-            style={{
-              objectFit: "cover",
-              height: "auto",
-            }}
-          />
-          {/* Texto encima de la imagen */}
-          <div
-            className="position-absolute top-50 start-50 translate-middle text-center px-3"
-            style={{ width: "100%", maxWidth: "600px" }}
-          >
-            <h2
-              className="fw-bold display-5"
-              style={{
-                color: "#FAF6F0",
-                textShadow: "0 2px 6px rgba(0,0,0,0.4)",
-              }}
-            >
-              Hecho a mano, diseñado para la vida
-            </h2>
-            <p
-              className="lead mb-4"
-              style={{
-                color: "#000000",
-                textShadow: "0 2px 6px rgba(0,0,0,0.6)",
-              }}
-            >
-              Descubre productos de alta calidad elaborados por talentosos
-              artesanos de todo el mundo.
-            </p>
-            <Link
-              to={"/shop"}
-              className="btn-hero btn px-4 py-2 fw-semibold rounded-pill"
-              style={{
-                backgroundColor: "#D28C64",
-                color: "#FAF6F0",
-                border: "none",
-              }}
-            >
-              Explora nuestra colección
-            </Link>
-          </div>
-        </div>
+  <img
+    className="img-fluid w-100 rounded"
+    src="/img/imgi_5_generated-image-edb10665-d6fa-4908-aad6-850410c594d1.jpg"
+    alt="Banner principal de creArte"
+    style={{
+      objectFit: "cover",
+      height: "auto",
+    }}
+  />
+  {/* Texto encima de la imagen */}
+  <div
+    className="position-absolute top-50 start-50 translate-middle text-center px-3"
+    style={{ width: "100%", maxWidth: "600px" }}
+  >
+    <h2
+      className="fw-bold display-5 banner-title"
+      style={{
+        color: "#FAF6F0",
+        textShadow: "0 2px 6px rgba(0,0,0,0.4)",
+      }}
+    >
+      Hecho a mano, diseñado para la vida
+    </h2>
+    <p
+      className="lead banner-text mb-4"
+      style={{
+        color: "#000000",
+        textShadow: "0 2px 6px rgba(0,0,0,0.6)",
+      }}
+    >
+      Descubre productos de alta calidad elaborados por talentosos
+      artesanos de todo el mundo.
+    </p>
+    <Link
+      to={"/shop"}
+      className="btn-hero btn px-4 py-2 fw-semibold rounded-pill banner-btn"
+      style={{
+        backgroundColor: "#D28C64",
+        color: "#FAF6F0",
+        border: "none",
+      }}
+    >
+      Explora nuestra colección
+    </Link>
+  </div>
+
+  {/* Media queries para móviles */}
+  <style>
+    {`
+      @media (max-width: 768px) {
+        .banner-title {
+          font-size: 1.5rem !important;
+        }
+        .banner-text {
+          font-size: 0.9rem !important;
+        }
+        .banner-btn {
+          font-size: 0.9rem !important;
+          padding: 0.4rem 1rem !important;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .banner-title {
+          font-size: 3rem !important; /* display-5 original */
+        }
+        .banner-text {
+          font-size: 1.25rem !important; /* lead original */
+        }
+        .banner-btn {
+          font-size: 1rem !important;
+          padding: 0.5rem 1.5rem !important;
+        }
+      }
+    `}
+  </style>
+</div>
+
 
         {/* Productos sugeridos */}
         <div className="container p-3">
