@@ -43,7 +43,8 @@ function AddProduct() {
    * Cerrar sesión:
    * Elimina cookies y redirige al inicio.
    */
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     cookies.remove("session", { path: "/" });
     cookies.remove("user", { path: "/" });
     navigate("/");
@@ -113,7 +114,7 @@ function AddProduct() {
       });
 
     // Redirigir después de agregar
-    navigate("/sellerDashboard/products");
+    navigate("/sellerDashboard");
   };
 
   /**
@@ -133,85 +134,104 @@ function AddProduct() {
           BARRA SUPERIOR (HEADER)
          =========================== */}
       <header className="border-bottom" style={{ backgroundColor: "#C77C57" }}>
-        <nav className="navbar navbar-expand-lg w-75 mx-auto container">
-          <div className="container-fluid px-4">
-            {/* IZQUIERDA: Logo */}
-            <div className="d-flex align-items-center justify-content-between w-100">
-              <Link
-                to="/sellerDashboard"
-                className="navbar-brand fw-bold me-2"
-                style={{ color: "#FFFFFF" }}
-              >
-                creArte
-              </Link>
-
-              {/* DERECHA: Usuario */}
-              <div className="d-flex align-items-center">
-                <div
-                  className="links-Header shadow rounded d-flex justify-content-center align-items-center me-3"
-                  onClick={() => setOpenMenu(!openMenu)}
-                  style={{ height: "40px", cursor: "pointer" }}
-                >
-                  <>
-                    {/* Imagen del usuario */}
-                    <img
-                      src={userImg || "/img/sbcf-default-avatar.webp"}
-                      className="img-fluid rounded-circle h-75 me-2 mx-2"
-                      alt="avatar"
-                    />
-
-                    {/* Nombre */}
-                    <span
-                      className="me-2"
-                      style={{
-                        color: "#FFFFFF",
-                        fontSize: "0.9rem",
-                        fontWeight: "500",
-                        whiteSpace: "nowrap",
-                      }}
+              <nav className="navbar navbar-expand-lg w-75 mx-auto container">
+                <div className="container-fluid px-4">
+                  {/* Logo */}
+                  <div className="d-flex align-items-center justify-content-between w-100">
+                    <Link
+                      style={{ color: "#FFFFFF" }}
+                      className="navbar-brand fw-bold me-2"
+                      to="/sellerDashboard"
                     >
-                      {userName}
-                    </span>
-
-                    {/* MENÚ DESPLEGABLE */}
-                    {openMenu && (
+                      <img
+                        src="/img/unnamed-removebg-preview.png"
+                        alt=""
+                        style={{ width: "40px", height: "40px" }}
+                      />
+                    </Link>
+      
+                    {/* Menú de usuario */}
+                    <div className="d-flex align-items-center">
                       <div
-                        className="menu position-absolute shadow-lg rounded bg-white"
-                        style={{
-                          top: "50px",
-                          right: "0",
-                          width: "145px",
-                          zIndex: 1000,
-                        }}
+                        className="links-Header shadow rounded d-flex justify-content-center align-items-center me-3"
+                        onClick={() => setOpenMenu(!openMenu)}
+                        style={{ height: "40px", cursor: "pointer" }}
                       >
-                        <ul className="list-unstyled mb-0">
-                          <li>
-                            <Link
-                              to="/perfil"
-                              className="dropdown-item py-2 px-3 text-dark text-decoration-none d-block"
-                            >
-                              <i className="bi bi-person me-2"></i> Perfil
-                            </Link>
-                          </li>
-                          <li>
-                            <button
-                              onClick={handleLogout}
-                              className="dropdown-item py-2 px-3 w-100 text-start text-danger border-0 bg-transparent"
-                            >
-                              <i className="bi bi-box-arrow-right me-2"></i>
-                              Cerrar sesión
-                            </button>
-                          </li>
-                        </ul>
+                        {user?.avatar ? (
+                          <img
+                            src={user?.avatar}
+                            className="img-fluid rounded-circle me-2 mx-2"
+                            alt="Foto usuario"
+                            style={{
+                              width: "30px",
+                              height: "30px",
+                              objectFit: "cover",
+                            }}
+                          />
+                        ) : (
+                          <div
+                            className="rounded-circle bg-secondary d-flex justify-content-center align-items-center me-2 mx-2"
+                            style={{
+                              width: "30px",
+                              height: "30px",
+                              color: "white",
+                              fontWeight: "600",
+                              fontSize: "14px",
+                            }}
+                          >
+                            {user?.name?.charAt(0)?.toUpperCase() || "U"}
+                          </div>
+                        )}
+                        <span
+                          className="me-2"
+                          style={{
+                            color: "#FFFFFF",
+                            fontSize: "0.9rem",
+                            fontWeight: "500",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {user?.name}
+                        </span>
+      
+                        {openMenu && (
+                          <div
+                            className="menu position-absolute shadow-lg rounded bg-white"
+                            style={{
+                              top: "50px",
+                              right: "0",
+                              width: "145px",
+                              zIndex: 1000,
+                              animation: "fadeIn 0.2s ease-in-out",
+                            }}
+                          >
+                            <ul className="list-unstyled mb-0">
+                              <li>
+                                <Link
+                                  to={`/sellerDashboard/profile/${user.id}`}
+                                  className="dropdown-item py-2 px-3 text-dark text-decoration-none d-block"
+                                >
+                                  <i className="bi bi-person me-2"></i> Perfil
+                                </Link>
+                              </li>
+                              <li>
+                                <button
+                                  onClick={handleLogout}
+                                  className="dropdown-item py-2 px-3 w-100 text-start text-danger border-0 bg-transparent"
+                                >
+                                  <i className="bi bi-box-arrow-right me-2"></i>
+                                  Cerrar sesión
+                                </button>
+                              </li>
+                            </ul>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
+              </nav>
+            </header>
 
       {/* ===========================
           CUERPO DE LA PÁGINA
