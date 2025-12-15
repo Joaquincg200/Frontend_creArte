@@ -12,11 +12,11 @@ const VoiceflowWidget = () => {
     // 2️⃣ Cuando el script se carga, inicializamos el widget
     script.onload = () => {
       window.voiceflow.chat.load({
-        verify: { projectID: "692b0c7faa64db708a88fa82" }, // ID del proyecto en Voiceflow
-        url: "https://general-runtime.voiceflow.com", // Endpoint general de runtime
-        versionID: "production", // Versión del proyecto
+        verify: { projectID: "693f780a00184fa65dc2015e" }, // ID del proyecto actualizado
+        url: "https://general-runtime.voiceflow.com",
+        versionID: "production",
         voice: {
-          url: "https://runtime-api.voiceflow.com", // Endpoint para voz (TTS)
+          url: "https://runtime-api.voiceflow.com",
         },
       });
     };
